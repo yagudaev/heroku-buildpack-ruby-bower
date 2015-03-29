@@ -99,7 +99,6 @@ class LanguagePack::Ruby < LanguagePack::Base
         install_binaries
         install_node
         install_bower
-        build_bower
         run_assets_precompile_rake_task
       end
       super
