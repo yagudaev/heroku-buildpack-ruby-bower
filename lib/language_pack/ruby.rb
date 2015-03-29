@@ -20,7 +20,7 @@ class LanguagePack::Ruby < LanguagePack::Base
   RBX_BASE_URL         = "http://binaries.rubini.us/heroku"
   BOWER_VERSION        = "1.3.12"
   BOWER_BASE_URL       = "http://heroku-buildpack-ruby-bower.s3.amazonaws.com"
-  NODE_JS_VERSION      = "0.10.21"
+  NODE_JS_VERSION      = "0.12.1"
   NODE_JS_BASE_URL     = "http://heroku-buildpack-nodejs.s3.amazonaws.com"
   NODE_BP_PATH         = "vendor/node/bin"
 
