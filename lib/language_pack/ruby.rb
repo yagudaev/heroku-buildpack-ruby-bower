@@ -612,7 +612,12 @@ ERROR
       bin_dir = "bin"
       FileUtils.mkdir_p bin_dir
 
-      run("curl #{NODE_JS_BASE_URL}/v#{NODE_JS_VERSION}/node-v#{NODE_JS_VERSION}-linux-x64.tar.gz -s -o - | tar xzf -")
+      run "
+        curl #{NODE_JS_BASE_URL}/v#{NODE_JS_VERSION}/node-v#{NODE_JS_VERSION}-linux-x64.tar.gz -s -o - | tar xzf - -C /tmp &&
+        mv /tmp/node-v#{NODE_JS_VERSION}-linux-x64/bin/* bin &&
+        chmod +x bin/*
+      "
+
       if $?.success?
         topic "Using Node.js version: #{NODE_JS_VERSION}"
       else
