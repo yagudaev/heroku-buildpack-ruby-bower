@@ -23,6 +23,7 @@ class LanguagePack::Ruby < LanguagePack::Base
   NODE_JS_VERSION      = "0.12.1"
   NODE_JS_BASE_URL     = "http://s3pository.heroku.com/node"
   NODE_BP_PATH         = "vendor/node/bin"
+  HEROKU_DIR           = "/app/bin"
 
   # detects if this is a valid Ruby app
   # @return [Boolean] true if it's a Ruby app
@@ -611,7 +612,7 @@ ERROR
       bin_dir = "bin"
       FileUtils.mkdir_p bin_dir
 
-      result = run "curl #{NODE_JS_BASE_URL}/v#{NODE_JS_VERSION}/node-v#{NODE_JS_VERSION}-linux-x64.tar.gz -s -o - | tar xzf - -C /tmp && mv /tmp/node-v#{NODE_JS_VERSION}-linux-x64/bin/* bin"
+      result = run "curl #{NODE_JS_BASE_URL}/v#{NODE_JS_VERSION}/node-v#{NODE_JS_VERSION}-linux-x64.tar.gz -s -o - | tar xzf - -C /tmp && mv /tmp/node-v#{NODE_JS_VERSION}-linux-x64/bin/* #{HEROKU_DIR}/node && chmod +x #{HEROKU_DIR}/node/bin/* && PATH=#{HEROKU_DIR}/node/bin:$PATH"
       puts result
 
       if $?.success?
