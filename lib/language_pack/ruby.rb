@@ -21,7 +21,8 @@ class LanguagePack::Ruby < LanguagePack::Base
   BOWER_VERSION        = "1.3.12"
   BOWER_BASE_URL       = "http://heroku-buildpack-ruby-bower.s3.amazonaws.com"
   NODE_JS_VERSION      = "0.12.1"
-  NODE_JS_BASE_URL     = "http://heroku-buildpack-nodejs.s3.amazonaws.com"
+  NODE_JS_BASE_URL     = "http://s3pository.heroku.com/node"
+  "curl #{NODE_JS_BASE_URL}/v#{NODE_JS_VERSION}/node-#{NODE_JS_VERSION}-linux-x64.tar.gz -s -o - | tar xzf -"
   NODE_BP_PATH         = "vendor/node/bin"
 
   # detects if this is a valid Ruby app
@@ -610,7 +611,8 @@ ERROR
     log("node") do
       bin_dir = "bin"
       FileUtils.mkdir_p bin_dir
-      run("curl #{NODE_JS_BASE_URL}/nodejs-#{NODE_JS_VERSION}.tgz -s -o - | tar xzf -")
+
+      run("curl #{NODE_JS_BASE_URL}/v#{NODE_JS_VERSION}/node-#{NODE_JS_VERSION}-linux-x64.tar.gz -s -o - | tar xzf -")
       if $?.success?
         topic "Using Node.js version: #{NODE_JS_VERSION}"
       else
