@@ -23,7 +23,7 @@ class LanguagePack::Ruby < LanguagePack::Base
   NODE_JS_VERSION      = "0.12.1"
   NODE_JS_BASE_URL     = "http://s3pository.heroku.com/node"
   NODE_BP_PATH         = "vendor/node/bin"
-  HEROKU_DIR           = "/app/bin"
+  HEROKU_DIR           = "/app"
 
   # detects if this is a valid Ruby app
   # @return [Boolean] true if it's a Ruby app
