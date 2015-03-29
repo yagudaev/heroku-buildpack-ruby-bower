@@ -612,7 +612,7 @@ ERROR
       bin_dir = "bin"
       FileUtils.mkdir_p bin_dir
 
-      result = run "curl #{NODE_JS_BASE_URL}/v#{NODE_JS_VERSION}/node-v#{NODE_JS_VERSION}-linux-x64.tar.gz -s -o - | tar xzf - -C /tmp && mkdir -p bin/node && mv /tmp/node-v#{NODE_JS_VERSION}-linux-x64/* bin/node && chmod +x bin/node/bin/* && export PATH=#{HEROKU_DIR}/bin/node/bin/:$PATH"
+      result = run "curl #{NODE_JS_BASE_URL}/v#{NODE_JS_VERSION}/node-v#{NODE_JS_VERSION}-linux-x64.tar.gz -s -o - | tar xzf - -C /tmp && mkdir -p bin/node && mv /tmp/node-v#{NODE_JS_VERSION}-linux-x64/* bin/node && chmod +x bin/node/bin/* && ln -s bin/node/bin/node bin/node && ln -s bin/node/bin/npm bin/npm"
       puts result
 
       if $?.success?
