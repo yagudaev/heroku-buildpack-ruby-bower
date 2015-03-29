@@ -627,7 +627,7 @@ ERROR
   # install bower as npm module
   def install_bower
     log("bower") do
-      run("curl #{BOWER_BASE_URL}/bower-#{bower_version}/node_modules.tar.gz -s -o - | tar xzf -")
+      run("curl #{BOWER_BASE_URL}/bower-#{bower_version}/node_modules.tar.gz -s -o - | tar xzf - && ln -s #{HEROKU_DIR}/node_modules/bower/bin/bower bin/bower")
       unless $?.success?
         error "Can't install Bower #{bower_version}. You can specify the version listed on http://heroku-buildpack-ruby-bower.s3-website-us-east-1.amazonaws.com/"
       end
